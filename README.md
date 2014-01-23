@@ -1,6 +1,6 @@
 # 小书匠编辑器
 
-小书匠编辑器（以下简称小书编）是一个在线的markdown编辑器，并提供对evernote的支持。
+[小书匠编辑器][4]（以下简称小书编）是一个在线的markdown编辑器，并提供对evernote的支持。
 
 小书编前身为[小书匠][1]上的一个文章输入模块，后来在[dillinger][2]的基础上，将[小书匠][1]原有的代码进行分离再整合，成为现在单独的一个小书编，并一直做为单独功能进行开发维护。
 
@@ -30,7 +30,7 @@
 
 ## 源代码
 
-http://github.com/suziwen/xiaoshujiangmarkdown
+http://github.com/suziwen/markdownxiaoshujiang
 
 ## 开源协议
 
@@ -44,3 +44,4 @@ MIT
   [1]: http://www.xiaoshujiang.com
   [2]: http://dillinger.io
   [3]: https://stackedit.io
+  [4]: http://markdown.xiaoshujiang.com
