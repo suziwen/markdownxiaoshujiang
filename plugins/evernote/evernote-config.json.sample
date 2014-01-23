@@ -1,0 +1,6 @@
+{
+  "consumerKey": "",
+  "consumerSecret": "",
+  "sandbox": true,
+  "callback_url": "http://localhost:8000/oauth/evernote"
+}
