@@ -1,8 +1,4 @@
 
-### 目录
-
-[TOC]
-
 ### 标题
 
 http://www.github.com/suziwen/markdownxiaoshujiang
