@@ -1,0 +1,27 @@
+<% if(!isUsingEvernoteDefaultConfig){ %>
+<% if(isEvernoteAuth) {
+ var icon = 'icon-minus'
+ var copy = '断开'
+ var href = '/unlink/evernote'
+}else{
+  var icon = 'icon-plus'
+  var copy = '连接到'
+  var href = '/redirect/evernote'
+  var zhhref = href + '?t=zh'
+}
+%>
+<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><%- evernoteServiceName %><b class="caret"></b></a>
+<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+  <% if(isEvernoteSandbox || isEvernoteAuth) {%>
+    <li><a tabindex="-1" href="<%- href %>" class="toggle-bind"><i class="<%- icon %>"></i>&nbsp;<%- copy %>我的<%- evernoteServiceName %></a></li>
+  <% } else {%>
+    <li><a tabindex="-1" href="<%- href %>" class="toggle-bind"><i class="<%- icon %>"></i>&nbsp;<%- copy %>我的Evernote</a></li>
+    <li><a tabindex="-1" href="<%- zhhref %>" class="toggle-bind"><i class="<%- icon %>"></i>&nbsp;<%- copy %>我的印象</a></li>
+  <% } %>
+  <% if(isEvernoteAuth) {%>
+  <li><a tabindex="-1" href="#" id="import_evernote"><i class="icon-download-alt"></i>&nbsp;从<%- evernoteServiceName %>上导入文件</a></li>
+  <li><a tabindex="-1" href="#" id="update_evernote"><i class="icon-hdd"></i>&nbsp;更新到<%- evernoteServiceName %></a></li>
+  <li><a tabindex="-1" href="#" id="saveas_evernote"><i class="icon-hdd"></i>&nbsp;另存到<%- evernoteServiceName %></a></li>
+  <% } %>
+</ul>
+<% } %>

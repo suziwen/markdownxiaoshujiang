@@ -1,0 +1,109 @@
+      <div id="myModal" class="modal hide fade" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">HTML</h3>
+        </div>
+        <pre>
+          <div id="myModalBody" class="modal-body">
+          </div>
+        </pre>
+      </div>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	  <span class="icon-bar"></span>
+	  <span class="icon-bar"></span>
+	  <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://www.xiaoshujiang.com">
+      <img src="http://www.xiaoshujiang.com/site_media/static/img/book1.a51b2bb8479c.png" alt="小书匠">小书匠<span class="label">beta</span>
+      </a>
+      <div class="nav-collapse">
+      <ul class="nav" role="navigation">
+        
+        <li class="dropdown">
+          <%- include evernote %>
+        </li>
+      </ul>
+
+      <ul class="nav pull-right">
+        <li class="dropdown">
+          <a href="#" id="drop5" role="button" class="dropdown-toggle" data-toggle="dropdown">操作<b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="drop5">
+            <li><a tabindex="-1" href="javascript:void(0);" id="new_md"><i class="icon-file"></i>&nbsp;新建文件</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="save_md"><i class="icon-file"></i>&nbsp;保存文件</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="export_md"><i class="icon-download"></i>&nbsp;导出为Markdown</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="export_html"><i class="icon-download"></i>&nbsp;导出为HTML</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="show_html"><i class="icon-download"></i>&nbsp;显示HTML</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="autosave"><i class="icon-remove"></i>&nbsp;禁止自动保存</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="about"><i class="icon-question-sign"></i>&nbsp;关于小书匠</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="cheat"><i class="icon-question-sign"></i>&nbsp;MARKDOWN帮助文档</a></li>
+            <li><a tabindex="-1" href="http://www.github.com/suziwen/markdownxiaoshujiang" target="_blank" ><i
+            class="icon-leaf"></i>&nbsp;github源代码</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav pull-right">
+        <li class="dropdown">
+          <a href="#" id="drop6" role="button" class="dropdown-toggle" data-toggle="dropdown">修改主题样式<b class="caret"></b></a>
+          <ul id="theme-list" class="dropdown-menu" role="menu" aria-labelledby="drop6">
+            <li><a tabindex='-1' href="#" data-value="ace/theme/chrome">Chrome</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/clouds">Clouds</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/clouds_midnight">Clouds Midnight</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/cobalt">Cobalt</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/crimson_editor">Crimson Editor</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/dawn">Dawn</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/dawn">Dreamweaver</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/eclipse">Eclipse</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/idle_fingers">idleFingers</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/kr_theme">krTheme</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/merbivore">Merbivore</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/merbivore_soft">Merbivore Soft</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/mono_industrial">Mono Industrial</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/monokai">Monokai</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/pastel_on_dark">Pastel on Dark</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/solarized_dark">Solarized Dark</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/solarized_light">Solarized Light</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/textmate">TextMate</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/tomorrow">Tomorrow</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/tomorrow_night">Tomorrow Night</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/tomorrow_night_blue">Tomorrow Night Blue</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/tomorrow_night_bright">Tomorrow Night Bright</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/tomorrow_night_eighties">Tomorrow Night 80s</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/twilight">Twilight</a></li>
+            <li><a tabindex='-1' href="#" data-value="ace/theme/vibrant_ink">Vibrant Ink</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+          <li>
+            <a id="unrelated-button" style="display:none;" href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
+            title="取消关联后，将无法快速保存到服务器,也无法显示服务器的历史版本"
+            data-original-title="取消关联后，将无法快速保存到服务器,也无法显示服务器的历史版本">取消关联</a>
+          </li>
+          <li>
+            <a id="version-mode" href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
+            title="ctrl+s保存后记录版本,如果文件已经与服务器关联，将快速保存到服务器上"
+            data-original-title="ctrl+s保存后记录版本,如果文件已经与服务器关联，将显示服务器上的历史版本文件">历史</a>
+          </li>
+          <li class="resize-horizontal">
+          <a id="preview-mode" href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom" title="预览模式切换" data-original-title="预览模式切换">
+            <i class="icon-resize-horizontal"></i>
+          </a>
+          </li>
+          <li class="resize-fullscreen">
+          <a id="writing-mode" href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom" title="写作模式切换" data-original-title="写作模式切换">
+	    <i class="icon-fullscreen"></i>
+          </a>
+          </li>
+     </ul>
+     <ul class="navbar-form pull-right">
+             <input class="span3" type="text" placeholder="文件名" name="filename" id="filename">
+             </ul>
+      </div>
+    </div>
+  </div>
+</div>

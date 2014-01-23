@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/*
+logs/*
+*-config.json
+backup/*
+
+
+
+
+public/css/style-*.css
+public/js/dependencies-*.js
+public/js/story-*.js
+
+*.swp

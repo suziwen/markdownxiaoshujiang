@@ -1,0 +1,58 @@
+{
+  "name": "markdown.xiaoshujiang",
+  "description": "markdown.xiaoshujiang.com",
+  "version": "0.0.1",
+  "author": {
+    "name": "booksmith",
+    "email": "booksmith@163.com"
+  },
+  "contributors": [
+    {
+      "name": "booksmith",
+      "email": "booksmith@163.com"
+    }
+  ],
+  "scripts": {
+    "start": "node app.js",
+    "predeploy": "node build.js"
+  },
+  "keywords": [
+    "xiaoshujiang",
+    "evernote",
+    "markdown",
+    "editor",
+    "ide",
+    "text",
+    "html",
+    "express",
+    "api"
+  ],
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/suziwen/markdownxiaoshujiang"
+    },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "dependencies": {
+    "express": ">=3.0.0rc3",
+    "stylus": "=0.34.1",
+    "ejs": ">=0.8.1",
+    "request": ">=2.9.203",
+    "colors": ">=0.6.0-1",
+    "node-markdown": ">=0.1.0",
+    "lodash": ">=0.6.1",
+    "evernote": "1.25.0",
+    "jsdom": "0.8.2",
+    "marked": "0.2.9",
+    "iconv": "2.0.6",
+    "html2markdown": "1.1.0"
+  },
+  "devDependencies": {
+    "smoosh": ">=0.3.2",
+    "walkdir": ">=0.0.5"
+  },
+  "domains": [
+    "markdown.xiaoshujiang.com"
+  ]
+}

@@ -1,0 +1,165 @@
+a:hover {
+	text-decoration: none;
+}
+.navbar .brand{
+  max-height: 40px;
+  overflow: visible;
+  padding-top: 5px;
+  padding-bottom: 0;
+
+}
+
+body.zen-mode #bdshare{
+    display: none;
+}
+.loading {
+		margin: 20px auto;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		padding: 100px 0;
+}
+/* editor layout */
+
+body.zen-mode .navbar,
+body.zen-mode .container .breadcrumb,
+body.zen-mode .container .btn-group,
+body.zen-mode .container .md-supported,
+body.zen-mode  footer{
+    display: none;
+}
+
+body.zen-mode .markdown-editor-widget{
+    position: relative;
+}
+body.zen-mode .ace_editor{
+    height: 100%;
+}
+body.zen-mode .editorPanel{
+    margin-top: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.main-container{
+	height:100%;
+}
+.markdown-editor-widget{
+		position: relative;
+		height: 100%;
+}
+
+.ace_editor{
+	  height: 100%;
+    position: relative !important;
+}
+
+.statics{
+    position: absolute;
+    right: 1%;
+    bottom: 10px;
+}
+
+.previewPanel{
+	padding: 20px;
+	word-wrap: break-word;
+  word-break: break-all;
+}
+.previewPanel, .versionPanel{
+	position: absolute;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left:20px;
+	left: 50%;
+	bottom: 10px;
+	right: 10px;
+	top: 50px;
+	overflow: auto;
+  background: rgba(255,255,255,0.9);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 30px rgba(0,0,0,0.3),inset 0 0 5px rgba(0,0,0,0.6);
+}
+.editorPanel{
+	position: absolute;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 20px;
+	top: 50px;
+	left: 10px;
+	bottom: 10px;
+	right: 50%;
+}
+.viewMode-normal .previewPanel{
+	left: 50%;
+}
+.viewMode-normal .editorPanel{
+	right: 50%;
+}
+.viewMode-preview .previewPanel{
+	left: 1%;
+}
+.viewMode-preview .editorPanel{
+	right: 150%;
+}
+.viewMode-editor .previewPanel{
+	left: 150%;
+}
+.viewMode-editor .editorPanel{
+	right: 1%;
+}
+@media (max-width:979px){
+	.previewPanel, .editorPanel{
+		top: 0px;
+	}
+}
+
+.version-mode .editorPanel, .version-mode .versionPanel{
+	bottom: 40px;
+}
+.version-mode .previewPanel{
+	display: none;
+}
+.version-mode .navbar{
+	top: -150px;
+}
+.version-mode .statics{
+    display: none;
+}
+
+.done{
+	position: absolute;
+	right: 52.5%;
+	bottom: 10px;
+}
+.version-buttons{
+	position: absolute;
+	left: 52.5%;
+	bottom: 10px;
+}
+
+.select-version{
+	position: absolute;
+	right: 1%;
+	bottom: 10px;
+}
+.done, .version-buttons, .select-version{
+	display: none;
+}
+.version-mode .done, .version-mode .version-buttons, .version-mode .select-version{
+	display: block;
+}
+
+
+.dropdown-menu li > a.selected{
+	background-color: #16A170 !important;
+	background-image: linear-gradient(to bottom, #17AA76, #149466) !important;
+	background-repeat: repeat-x !important;
+	color: #FFFFFF;
+	outline: 0 none;
+	text-decoration: none;
+}

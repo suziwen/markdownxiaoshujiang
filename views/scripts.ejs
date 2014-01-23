@@ -1,0 +1,47 @@
+<% if(env === 'production') { %>
+
+  <script src="/js/jquery.1.8.3.min.js"></script>
+  <script src="/js/dependencies-<%- app_version %>.min.js" type="text/javascript"></script>
+  <script src="/js/story-<%- app_version %>.min.js" type="text/javascript"></script>
+<% } else { %>
+  <script src="/js/jquery.1.8.3.min.js"></script>
+  <script src="/js/underscore.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/mode-markdown.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/Markdown.Converter.js" type="text/javascript"></script>
+  <script src="/js/Markdown.Sanitizer.js" type="text/javascript"></script>
+  <script src="/js/Markdown.Extra.js" type="text/javascript"></script>
+  <script src="/js/toc.js" type="text/javascript"></script>
+  <script src="/js/jwerty.js" type="text/javascript"></script>
+  <script src="/js/bootstrap-notify.js" type="text/javascript"></script>
+  <script src="/js/jquery.icheck.js" type="text/javascript"></script>
+  <script src="/js/transformjs.1.0.beta.2.js" type="text/javascript"></script>
+  <script src="/js/select2.js" type="text/javascript"></script>
+  <script src="/js/select2_locale_zh-CN.js" type="text/javascript"></script>
+  <script src="/js/difflib.js" type="text/javascript"></script>
+  <script src="/js/diffview.js" type="text/javascript"></script>
+  <script src="/js/diff_match_patch_uncompressed.js" type="text/javascript"></script>
+  <script src="/js/FileSaver.js" type="text/javascript"></script>
+  <script src="/js/md5.js" type="text/javascript"></script>
+  <script src="/js/Blob.js" type="text/javascript"></script>
+  <script src="/js/screenfull.js" type="text/javascript"></script>
+  <script src="/js/markdown_dom_parser.js" type="text/javascript"></script>
+  <script src="/js/html2markdown.js" type="text/javascript"></script>
+  <script src="/js/story.js" type="text/javascript"></script>
+<% }%>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+     tex2jax: {inlineMath: [["$#","#$"],["\\(","\\)"]]},
+     "HTML-CSS": {
+        showMathMenu : false
+      }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<style type="text/css">
+.ace_editor {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', 'Courier', 'Lucida Console', monospace;
+}
+</style>
