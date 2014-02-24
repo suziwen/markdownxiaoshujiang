@@ -779,7 +779,7 @@ $(function(){
       editor.getSession().setUseWrapMode(true)
       editor.setShowPrintMargin(false)
 
-      editor.setFontSize(29);
+      editor.setFontSize(15);
       editor.getSession().setMode('ace/mode/markdown')
       
       editor.getSession().setValue( profile.currentMd || editor.getSession().getValue())
