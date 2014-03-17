@@ -944,7 +944,7 @@ $(function(){
   function fetchTheme(th, cb){
     var name = th.split('/').pop()
 
-    asyncLoad("/js/theme-"+ name +".js", function(){
+    asyncLoad("/js/ace/theme-"+ name +".js", function(){
 
       editor.setTheme(th)
 
