@@ -36,6 +36,10 @@ exports.not_implemented = function(req, res) {
   res.render('not-implemented')
 }
 
+exports.cache_manifest = function(req, res){
+  res.render('manifest')
+}
+
 /* Core stuff */
 
 exports.fetch_md = Core.fetchMd

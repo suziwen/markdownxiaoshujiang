@@ -41,6 +41,7 @@ app.configure('development', function(){
 app.get('/', routes.index)
 
 app.get('/not-implemented', routes.not_implemented)
+app.get('/cache.manifest', routes.cache_manifest)
 
 /* Begin Evernote */
 
