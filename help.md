@@ -4,6 +4,8 @@
 http://www.github.com/suziwen/markdownxiaoshujiang
 http://www.xiaoshujiang.com
 
+**qq交流群： 310113380**
+
 # 这是 H1 一级标题
 ## 这是 H2 二级标题
 ### 这是 H3 三级标题
