@@ -35,7 +35,7 @@
     "node": "0.8.x"
   },
   "dependencies": {
-    "express": ">=3.0.0rc3",
+    "express": "=3.3.4",
     "stylus": "=0.34.1",
     "ejs": ">=0.8.1",
     "request": ">=2.9.203",
