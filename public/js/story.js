@@ -8,12 +8,19 @@ $(function(){
         theme: 'ace/theme/clouds'
       , currentMd: ''
       ,viewMode: "viewMode-normal"
+      ,keyBinding: "ace"
       , autosave: 
         {
           enabled: true
         , interval: 60000 // might be too aggressive; don't want to block UI for large saves.
         }
       , current_filename : '未命名文件'
+      }
+    ,keyBindings = 
+      {
+         ace: null
+        ,vim: require("ace/keyboard/vim").handler
+        ,emacs: "ace/keyboard/emacs"
       }
   var versionClient = null;
 
@@ -736,7 +743,8 @@ $(function(){
       getUserProfile()
 
       initUi()
-      
+      // 取消异步加载，因为现在打算用离线应用
+      //initMathjax()
       // converter = new Showdown.converter()
       
       // bindPreview()
@@ -766,6 +774,16 @@ $(function(){
 
 
   /**
+   * 异步加载mathjax库，加载功能后重新更新预览页面
+   */
+  function initMathjax(){
+    $.getScript('http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML', function(){
+          previewMd();
+          Notifier.showMessage('加载Mathjax成功，现在可以使用mathjax语法进行公式的编辑');
+        });
+  }
+
+  /**
    * Initialize various UI elements based on userprofile data.
    *
    * @return {Void}
@@ -781,6 +799,7 @@ $(function(){
 
       editor.setFontSize(15);
       editor.getSession().setMode('ace/mode/markdown')
+      editor.setKeyboardHandler(keyBindings[profile.keyBinding]);
       
       editor.getSession().setValue( profile.currentMd || editor.getSession().getValue())
       
@@ -789,6 +808,16 @@ $(function(){
       
       editorPanel.bind($.support.transitionEnd, function(){
         resizePanels();
+      });
+    
+      var settingContainer = $('#modal-setting');
+      var $keyBindings = settingContainer.find('#keyBindings');
+      $keyBindings.find('option[value="' + profile.keyBinding + '"]' ).prop('selected', true);
+      $keyBindings.on('change', function(event){
+        var value = $keyBindings.find('option:selected').val();
+        editor.setKeyboardHandler(keyBindings[value]);
+        updateUserProfile({keyBinding: value});
+        Notifier.showMessage("键盘模式修改成功：" + value)
       });
     })
     
@@ -1012,6 +1041,15 @@ $(function(){
     });
   }
 
+  function showSetting(){
+    var container = $('#modal-setting');
+    container.modal({
+      keyboard: false,
+      backdrop: 'static',
+      show: true
+    })
+  }
+
   /**
    * Show a sad panda because they are using a shitty browser. 
    *
@@ -1201,6 +1239,12 @@ $(function(){
         return false
       })
 
+
+    $('#setting').
+      on('click', function(){
+        showSetting();
+        return false;
+      })
 
     $('#about').
       on('click', function(){

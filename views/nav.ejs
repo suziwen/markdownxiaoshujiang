@@ -8,6 +8,25 @@
           </div>
         </pre>
       </div>
+      <div id="modal-setting" class="modal hide fade" tabindex="-1" data-backdrop="static" role="dialog">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>设置</h3>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div class="control-group">
+              <label for="keyBindings" class="control-label">键盘模式</label>
+              <div class="controls"><select id="keyBindings" name="keyBindings">
+                  <option value="ace" selected>默认</option>
+                  <option value="vim">vim</option>
+                  <option value="emacs">Emacs</option>
+                </select></div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"><button class="btn" data-dismiss="modal">关闭</button></div>
+      </div>
 
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -37,6 +56,7 @@
             <li><a tabindex="-1" href="javascript:void(0);" id="export_md"><i class="icon-download"></i>&nbsp;导出为Markdown</a></li>
             <li><a tabindex="-1" href="javascript:void(0);" id="export_html"><i class="icon-download"></i>&nbsp;导出为HTML</a></li>
             <li><a tabindex="-1" href="javascript:void(0);" id="show_html"><i class="icon-download"></i>&nbsp;显示HTML</a></li>
+            <li><a tabindex="-1" href="javascript:void(0);" id="setting"><i class="icon-cog"></i>&nbsp;设置</a></li>
             <li><a tabindex="-1" href="javascript:void(0);" id="autosave"><i class="icon-remove"></i>&nbsp;禁止自动保存</a></li>
             <li><a tabindex="-1" href="javascript:void(0);" id="about"><i class="icon-question-sign"></i>&nbsp;关于小书匠</a></li>
             <li><a tabindex="-1" href="javascript:void(0);" id="cheat"><i class="icon-question-sign"></i>&nbsp;MARKDOWN帮助文档</a></li>
