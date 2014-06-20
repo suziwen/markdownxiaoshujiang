@@ -37,8 +37,8 @@ body.zen-mode .ace_editor{
 }
 body.zen-mode .editorPanel{
     margin-top: 0px;
-    top: 0px;
-    bottom: 0px;
+    top: 5px;
+    bottom: 5px;
     margin-bottom: 0px;
 }
 
@@ -68,30 +68,24 @@ body.zen-mode .editorPanel{
 }
 .previewPanel, .versionPanel{
 	position: absolute;
-	margin-top: 15px;
-	margin-bottom: 15px;
-	margin-left:20px;
+	margin-top: 6px;
+	margin-bottom: 0px;
+	margin-left:3px;
 	left: 50%;
-	bottom: 10px;
-	right: 10px;
-	top: 50px;
+	bottom: 6px;
+	right: 6px;
+	top: 45px;
 	overflow: auto;
   background: rgba(255,255,255,0.9);
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 0 30px rgba(0,0,0,0.3),inset 0 0 5px rgba(0,0,0,0.6);
 }
 .editorPanel{
 	position: absolute;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-right: 20px;
-	top: 50px;
-	left: 10px;
-	bottom: 10px;
+  margin-top: 6px;
+  margin-bottom: 0px;
+  margin-right: 3px;
+	top: 45px;
+	left: 6px;
+	bottom: 6px;
 	right: 50%;
 }
 .viewMode-normal .previewPanel{
@@ -101,7 +95,7 @@ body.zen-mode .editorPanel{
 	right: 50%;
 }
 .viewMode-preview .previewPanel{
-	left: 1%;
+	left: 6px;
 }
 .viewMode-preview .editorPanel{
 	right: 150%;
@@ -110,16 +104,20 @@ body.zen-mode .editorPanel{
 	left: 150%;
 }
 .viewMode-editor .editorPanel{
-	right: 1%;
+	right: 6px;
 }
 @media (max-width:979px){
 	.previewPanel, .editorPanel{
-		top: 0px;
+		top: 55px;
+	}
+	.navbar-fixed-top {
+		margin-bottom: 0px;
+		position: fixed;
 	}
 }
 
 .version-mode .editorPanel, .version-mode .versionPanel{
-	bottom: 40px;
+	bottom: 46px;
 }
 .version-mode .previewPanel{
 	display: none;
