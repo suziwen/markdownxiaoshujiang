@@ -48,6 +48,8 @@ function smoosher(){
                         { "src": "./public/js/underscore.js", "jshint": false}, 
                         { "src": "./public/js/jwerty.js", "jshint": false},
                         { "src": "./public/js/bootstrap-notify.js", "jshint": false},
+                        { "src": "./public/js/bootstrap-modalmanager.js", "jshint": false},
+                        { "src": "./public/js/bootstrap-modal.js", "jshint": false},
                         { "src": "./public/js/jquery.icheck.js", "jshint": false},
                         { "src": "./public/js/transformjs.1.0.beta.2.js", "jshint": false},
                         { "src": "./public/js/select2.js", "jshint": false}, 
@@ -71,7 +73,7 @@ function smoosher(){
     },
     "CSS": {
       "DIST_DIR": "./public/css",
-      "style": [ "./public/css/bootstrap.css", "./public/css/bootstrap-responsive.css", "./public/css/bootstrap-notify.css", "./public/css/flat/blue.css", "./public/css/select2/select2.css", "./public/css/diffview.css", "./public/css/zeneditor.css", "./public/css/style.css", "./public/css/styles/default.css" ]
+      "style": [ "./public/css/bootstrap.css", "./public/css/bootstrap-responsive.css", "./public/css/bootstrap-notify.css", "./public/css/bootstrap-modal.css", "./public/css/flat/blue.css", "./public/css/select2/select2.css", "./public/css/diffview.css", "./public/css/zeneditor.css", "./public/css/style.css", "./public/css/styles/default.css" ]
     }
   })
   .done(function(){
