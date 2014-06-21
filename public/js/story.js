@@ -9,6 +9,8 @@ $(function(){
       , currentMd: ''
       ,viewMode: "viewMode-normal"
       ,keyBinding: "ace"
+      ,showInvisibles: true
+      ,showGutter: true
       , autosave: 
         {
           enabled: true
@@ -800,7 +802,9 @@ $(function(){
       editor.setFontSize(15);
       editor.getSession().setMode('ace/mode/markdown')
       editor.setKeyboardHandler(keyBindings[profile.keyBinding]);
-      
+      editor.renderer.setShowGutter(profile.showGutter);
+      editor.setShowInvisibles(profile.showInvisibles);
+
       editor.getSession().setValue( profile.currentMd || editor.getSession().getValue())
       
       // Immediately populate the preview <div>
@@ -818,6 +822,22 @@ $(function(){
         editor.setKeyboardHandler(keyBindings[value]);
         updateUserProfile({keyBinding: value});
         Notifier.showMessage("键盘模式修改成功：" + value)
+      });
+      var $showGutter = settingContainer.find('#showGutter');
+      $showGutter.prop('checked', profile.showGutter);
+      $showGutter.on('change', function(event){
+        var checked = $showGutter.prop('checked');
+        editor.renderer.setShowGutter(checked);
+        updateUserProfile({showGutter: checked});
+        Notifier.showMessage(checked?"打开显示行号":"关闭显示行号")
+      });
+      var $showInvisibles = settingContainer.find('#showInvisibles');
+      $showInvisibles.prop('checked', profile.showInvisibles);
+      $showInvisibles.on('change', function(event){
+        var checked = $showInvisibles.prop('checked');
+        editor.setShowInvisibles(checked);
+        updateUserProfile({showInvisibles: checked});
+        Notifier.showMessage(checked?"打开显示隐藏元素":"关闭显示隐藏元素")
       });
     })
     
