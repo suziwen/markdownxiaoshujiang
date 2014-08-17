@@ -43,7 +43,7 @@ if (!(window.MathJax && MathJax.Hub)) {
 if (window.MathJax) {window.MathJax = {AuthorConfig: window.MathJax}}
                else {window.MathJax = {}}
 
-// MathJax.isPacked = true; // This line is uncommented by the packer.
+MathJax.isPacked = true; // This line is uncommented by the packer.
 
 MathJax.version = "2.3";
 MathJax.fileversion = "2.3.1";
