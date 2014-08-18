@@ -490,8 +490,7 @@ Use and distibution http://www.opensource.org/licenses/bsd-license.php
     function isElement(item) { return item.constructor == Element; }
     function textClean(text) {
         return text
-            .replace(/&nbsp;|\n/g, " ")
-            .replace(/\s\s+/g, " ");
+            .replace(/&nbsp;|\n/g, " ");
     }
 
     // trim off white space, doesn't use regex
