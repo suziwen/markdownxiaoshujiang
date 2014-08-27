@@ -46,7 +46,8 @@
     "jsdom": "0.8.2",
     "marked": "0.2.9",
     "iconv": "2.0.6",
-    "html2markdown": "1.1.0"
+    "html2markdown": "1.1.0",
+    "juice": "0.4.0"
   },
   "devDependencies": {
     "smoosh": ">=0.3.2",

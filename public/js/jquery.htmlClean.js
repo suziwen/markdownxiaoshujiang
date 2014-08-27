@@ -489,8 +489,7 @@ Use and distibution http://www.opensource.org/licenses/bsd-license.php
     function isInline(item) { return isText(item) || item.tag.isInline; }
     function isElement(item) { return item.constructor == Element; }
     function textClean(text) {
-        return text
-            .replace(/&nbsp;|\n/g, " ");
+        return text;
     }
 
     // trim off white space, doesn't use regex
@@ -578,6 +577,6 @@ Use and distibution http://www.opensource.org/licenses/bsd-license.php
         ];
     var tagAttributesRequired = [[], "img", ["alt"]];
     // white space chars
-    var whitespace = [" ", " ", "\t", "\n", "\r", "\f"];
+    var whitespace = [];
 
 })(jQuery);

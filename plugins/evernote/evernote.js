@@ -11,10 +11,13 @@ var fs = require('fs')
   , getSanitizingConverter = require("../../public/js/Markdown.Sanitizer").getSanitizingConverter
   , Extra = require('../../public/js/Markdown.Extra').Extra
   , _ = require('lodash')
+  , juice = require('juice');
 
 var converter = new Converter();
 converter = getSanitizingConverter();
 Extra.init(converter);
+var cssFiles = fs.readFileSync(path.resolve(__dirname, '../../public/css/evernote.css')).toString() + '\n' + 
+              fs.readFileSync(path.resolve(__dirname, '../../public/css/styles/default.css')).toString() + '\n';
 var jquery = fs.readFileSync(path.resolve(__dirname, '../../public/js/jquery.min.js')).toString();
 var jqueryHtmlClean = fs.readFileSync(path.resolve(__dirname, '../../public/js/jquery.htmlClean.js')).toString();
 var evernote_config_file = path.resolve(__dirname, 'evernote-config.json')
@@ -279,10 +282,12 @@ exports.Evernote = (function() {
         done: function(error, window){
           var $ = window.$;
           if ('markdown'!=format){
-            contents = htmlContents;
+            contents = juice.inlineContent(htmlContents, cssFiles);
             $('body').html(contents);
             contents = $('body').html();
             contents = $.htmlClean(contents, {
+              replaceStyles: [],
+              allowedAttributes: [['style']],
               removeAttrs:['class','id', 'accesskey', 'data', 'dynsrc', 'tabindex']
             });
           } else {
