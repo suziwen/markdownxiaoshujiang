@@ -6,7 +6,7 @@ $(function(){
     , profile = 
       {
         theme: 'ace/theme/clouds'
-      , currentMd: ''
+      ,currentMd: ''
       ,viewMode: "viewMode-normal"
       ,keyBinding: "ace"
       ,showInvisibles: true
@@ -744,6 +744,7 @@ $(function(){
       
       getUserProfile()
 
+      updateUserProfile({relateType: RELATETYPE})
       initUi()
       // 取消异步加载，因为现在打算用离线应用
       //initMathjax()
@@ -1291,21 +1292,6 @@ $(function(){
      $('#version-mode').on('click', function(){
        toggleVersionMode();
      });
-
-    if (!!profile.relateType){
-      $('#unrelated-button').show();
-    }
-    $('.toggle-bind').on('click', function(){
-      if($(this).find('>i.icon-minus').length > 0){
-        updateUserProfile({relateType:null});
-        $('#unrelated-button').hide();
-      }
-    })
-    $('#unrelated-button').on('click', function(){
-      updateUserProfile({relateType:null});
-      $(this).hide();
-    });
-
      $('.done').on('click', function(){
       toggleVersionMode();
      });
@@ -1324,7 +1310,19 @@ $(function(){
        var target = versionClient.getCurrentVersion().content;
        showDiff(source, target); 
      });
-    $('#filename').bind('keyup', updateFilename)
+    $('#filename').bind('keyup', updateFilename);
+    $('.toggle-bind').on('click', function(){
+      updateUserProfile({
+            relateType: null
+          , evernote: {
+              guid: null
+            , notebook_guid: null
+            , format: 'html'
+          }
+      });
+      var href = $(this).data('href');
+      document.location.href = href;
+    });
   } // end bindNav()
 
   /**
@@ -1678,22 +1676,12 @@ $(function(){
       format_str += '</div>';
       return format_str;
     }
-
-    var _generateReateCheck = function(){
-      var relate_str = '<div class="form-inline pull-left">\n';
-      relate_str += '<span>&nbsp;&nbsp;自动关联：</span>\n';
-      relate_str += '<label class="checkbox">\n';
-      relate_str += '<input type="checkbox" name ="relate" value="relate" checked="checked"></label>\n';
-      relate_str += '</div>';
-      return relate_str;
-    }
  
     var _showFetchBtn = function(container){
       var footer = container.find('.modal-footer');
       var notebooksBtn = $('<button class="btn">返回</button>');
       var fetchBtn = $('<button class="btn btn-primary">选择</button>');
       footer.append(_generateFormatSelect('markdown'));
-      footer.append(_generateReateCheck());
       footer.append(notebooksBtn).append(fetchBtn);
       notebooksBtn.on('click', function(){
         Evernote.importEvernoteModal();
@@ -1702,12 +1690,7 @@ $(function(){
         var selectedli = container.find('ul.nav li.active');
         if (selectedli.length ==1) {
           var format = 'markdown';
-          var needrelated = false;
           var formatinput = container.find('input[name="format"]:checked');
-          var needrelateinput = container.find('input[name="relate"]:checked');
-          if(needrelateinput.length >=1 ){
-            needrelated = true;
-          }
           if (formatinput.length == 1) {
             format = formatinput.val()
           }
@@ -1715,7 +1698,7 @@ $(function(){
           var note_title = selectedli.text();
           profile.current_filename = note_title;
           Evernote.setFilePath(note_guid);
-          Evernote.fetchNote(note_guid, format, needrelated);
+          Evernote.fetchNote(note_guid, format);
         }else if (selectedli.length > 1){
           Notifier.showMessage('一次只能加载一个笔记');
         } else {
@@ -1726,8 +1709,7 @@ $(function(){
     var _showSaveasBtn = function(container){
       var footer = container.find('.modal-footer');
       var saveasBtn = $('<button class="btn btn-primary">选择</button>');
-      footer.append(_generateFormatSelect('markdown'));
-      footer.append(_generateReateCheck());
+      footer.append(_generateFormatSelect('html'));
       footer.append(saveasBtn);;
       saveasBtn.on('click', function(){
         var selectedli = container.find('ul.nav li.active');
@@ -1737,13 +1719,8 @@ $(function(){
           if (formatinput.length == 1) {
             format = formatinput.val()
           }
-          var needrelated = false;
-          var needrelateinput = container.find('input[name="relate"]:checked');
-          if(needrelateinput.length >=1 ){
-            needrelated = true;
-          }
           var notebook_guid = selectedli.attr('data-guid');
-          Evernote.putMarkdownFile(null, null, format, notebook_guid, needrelated)
+          Evernote.putMarkdownFile(null, null, format, notebook_guid)
         }else if (selectedli.length > 1){
           Notifier.showMessage('只能选择一个笔记本');
         } else {
@@ -1756,8 +1733,7 @@ $(function(){
       var footer = container.find('.modal-footer');
       var notebooksBtn = $('<button class="btn">返回</button>');
       var updateBtn = $('<button class="btn btn-primary">选择</button>');
-      footer.append(_generateFormatSelect('markdown'));
-      footer.append(_generateReateCheck());
+      footer.append(_generateFormatSelect('html'));
       footer.append(notebooksBtn).append(updateBtn);;
       notebooksBtn.on('click', function(){
         Evernote.updateEvernoteModal();
@@ -1770,14 +1746,9 @@ $(function(){
           if (formatinput.length == 1) {
             format = formatinput.val()
           }
-          var needrelated = false;
-          var needrelateinput = container.find('input[name="relate"]:checked');
-          if(needrelateinput.length >=1 ){
-            needrelated = true;
-          }
           var note_guid = selectedli.attr('data-guid');
           var note_title = selectedli.text();
-          Evernote.putMarkdownFile(note_guid, note_title, format, null, needrelated)
+          Evernote.putMarkdownFile(note_guid, note_title, format, null)
         }else if (selectedli.length > 1){
           Notifier.showMessage('一次只能加载一个笔记');
         } else {
@@ -1795,15 +1766,6 @@ $(function(){
         return false;
       } else {
         return true;
-      }
-    }
-    var _relateService = function (needrelated, relateType){
-      if(!!needrelated){
-        updateUserProfile({relateType:relateType});
-        $('#unrelated-button').show();
-      } else {
-        updateUserProfile({relateType:null});
-        $('#unrelated-button').hide();
       }
     }
     return {
@@ -1989,7 +1951,7 @@ $(function(){
 
       }, 
 
-      fetchNote: function(guid, format, needrelated){
+      fetchNote: function(guid, format){
 
         var container = $('#modal-generic');
         _showLoading(container);
@@ -2019,7 +1981,6 @@ $(function(){
             profile.evernote.guid = response.guid ;
             profile.evernote.notebook_guid = response.notebookGuid;
             profile.evernote.format = format; 
-            _relateService(needrelated, 'evernote');
             editor.getSession().setValue( response.content )
             previewMd()
             
@@ -2121,7 +2082,7 @@ $(function(){
       setFilePath: function(guid){
         updateUserProfile({evernote: {guid: guid }})
       },
-      putMarkdownFile: function(guid, title, format, notebook_guid, needrelated){
+      putMarkdownFile: function(guid, title, format, notebook_guid){
         var container = $('#modal-generic');
         container.modal({
           keyboard: false,
@@ -2150,12 +2111,9 @@ $(function(){
             
             // console.dir(JSON.parse(response.data))
 
-            if (!!needrelated){
-              profile.evernote.guid = response.guid ;
-              profile.evernote.notebook_guid = response.notebookGuid;
-              profile.evernote.format = format; 
-              _relateService(needrelated, 'evernote');
-            }
+            profile.evernote.guid = response.guid ;
+            profile.evernote.notebook_guid = response.notebookGuid;
+            profile.evernote.format = format; 
             Notifier.showMessage( Notifier.messages.docSavedEvernote )
             
           } // end else
@@ -2226,7 +2184,6 @@ window.onload = function(){
     "width": "100%"
   });
   hljs.initHighlightingOnLoad();
-  $('#unrelated-button').tooltip();
   $('#version-mode').tooltip();
   $('#preview-mode').tooltip();
   $('#writing-mode').tooltip();
