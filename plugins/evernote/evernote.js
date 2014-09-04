@@ -37,21 +37,125 @@ if(fs.existsSync(evernote_config_file)) {
   console.warn('Evernote config not found at ' + evernote_config_file + '. Using defaults instead.')
 }
   sandbox = evernote_config.sandbox;
+
+function str2ab (s) {
+    s = unescape(encodeURIComponent(s));
+    var ua = new Uint8Array(s.length);
+    for (var i = 0; i < s.length; i++) {
+        ua[i] = s.charCodeAt(i);
+    }
+    return ua;
+}
+
+
+function decodeUtf8(arrayBuffer) {
+  var result = "";
+  var i = 0;
+  var c = 0;
+  var c1 = 0;
+  var c2 = 0;
+ 
+  var data = new Uint8Array(arrayBuffer);
+ 
+  // If we have a BOM skip it
+  if (data.length >= 3 && data[0] === 0xef && data[1] === 0xbb && data[2] === 0xbf) {
+    i = 3;
+  }
+ 
+  while (i < data.length) {
+    c = data[i];
+ 
+    if (c < 128) {
+      result += String.fromCharCode(c);
+      i++;
+    } else if (c > 191 && c < 224) {
+      if( i+1 >= data.length ) {
+        throw "UTF-8 Decode failed. Two byte character was truncated.";
+      }
+      c2 = data[i+1];
+      result += String.fromCharCode( ((c&31)<<6) | (c2&63) );
+      i += 2;
+    } else {
+      if (i+2 >= data.length) {
+        throw "UTF-8 Decode failed. Multi byte character was truncated.";
+      }
+      c2 = data[i+1];
+      c3 = data[i+2];
+      result += String.fromCharCode( ((c&15)<<12) | ((c2&63)<<6) | (c3&63) );
+      i += 3;
+    }
+  }
+  return result;
+}
+
 exports.Evernote = (function() {
 
+  var METAMARKDOWN = "markdownFile";
   function htmlEntities(str) {
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   var callbackUrl = evernote_config.callback_url;
+
+  var getMetaMarkdownAttribute = function(note){
+    var resources = note.resources;
+    if((typeof resources=='object' && !!resources)){
+      for (var i=0; i<resources.length; i++){
+        var r = resources[i];
+        if(!!r.attributes){
+          var a = r.attributes;
+          if(a.fileName == METAMARKDOWN){
+            return r;
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  var checkHasModified = function(note, resource){
+    if(resource.fileName == METAMARKDOWN && (resource.attributes.timestamp + 20000) >= note.updated) {
+      return true;
+    }
+    return false;
+  }
+
+  var createResource = function(content){
+      var arrayBuffer = str2ab(content);
+      var plainData = new ENManager.Data({body: arrayBuffer});
+      var resourceAttrs = new ENManager.ResourceAttributes({fileName: METAMARKDOWN, timestamp: Date.now()});
+      var resource = new ENManager.Resource({data: plainData, mime: 'text/x-markdown', attributes: resourceAttrs});
+      return resource;
+  }
+
+  var updateResource = function(resource, content){
+      var arrayBuffer = str2ab(content);
+      var plainData = new ENManager.Data({body: arrayBuffer});
+      var resourceAttrs = new ENManager.ResourceAttributes({fileName: METAMARKDOWN, timestamp: Date.now()});
+      resource.data = plainData;
+      resource.attributes = resourceAttrs;
+      return resource;
+  }
+
+  var getOrignMarkdownFile = function(note){
+    var metaResource = getMetaMarkdownAttribute(note);
+    if(!!metaResource&&!checkHasModified(note, metaResource)){
+      return decodeUtf8(metaResource.data.body);
+    } else {
+      return null;
+    }
+  }
+
   var getServiceHost = function(serviceType){
      if (serviceType === 'zh'){
       return "app.yinxiang.com";
      }
      return ""
    }
-  var createNote = function(evernote_obj, title, content, notebookGuid, cb){
-      var note = new ENManager.Note({title: title, notebookGuid: notebookGuid, content: content});
+  var createNote = function(evernote_obj, title, content, plainContent, notebookGuid, cb){
+      var note = new ENManager.Note({title: title, notebookGuid: notebookGuid, content: content, resources: []});
+      var resource = createResource(plainContent);
+      note.resources.push(resource);
       var serviceHost = getServiceHost(evernote_obj.service_type);
       var client = new ENManager.Client({
         token: evernote_obj.oauth.access_token,
@@ -72,7 +176,7 @@ exports.Evernote = (function() {
         }
       });
     };
-   var updateNote = function(evernote_obj, guid, title, content, cb){
+   var updateNote = function(evernote_obj, guid, title, content, plainContent, cb){
       var serviceHost = getServiceHost(evernote_obj.service_type);
       var client = new ENManager.Client({
         token: evernote_obj.oauth.access_token,
@@ -80,15 +184,28 @@ exports.Evernote = (function() {
         "serviceHost": serviceHost
       });
       var noteStore = client.getNoteStore();
-      var note = new ENManager.Note({guid: guid, title: title, content:content});
       var userStore = client.getUserStore();
       userStore.getNoteStoreUrl(function(noteStoreUrl){
         if (typeof(noteStoreUrl) == 'string'){
-          noteStore.updateNote(note, function(note){
-            if (!!cb) {
-              cb(note);
+          noteStore.getNote(guid, true, true, true, true, function(note){
+            var resource = getMetaMarkdownAttribute(note);
+            if (!!resource){
+              resource = updateResource(resource, plainContent);
+            } else {
+              resource = createResource(plainContent);
+              if (typeof(note.resources) != "object" || !(note.resources)){
+                note.resources = [];
+              }
+              note.resources.push(resource);
             }
-          });
+            note.title = title;
+            note.content = content;
+            noteStore.updateNote(note, function(note){
+              if (!!cb) {
+                cb(note);
+              }
+            });
+          })
         } else {
           cb(noteStoreUrl);
         }
@@ -193,7 +310,12 @@ exports.Evernote = (function() {
                 $('en-media').remove();
                 var content = $('en-note').html().trim();
                 if ('markdown' == format || $('en-note br[title="markdown"]').length > 0){
-                  content = html2markdown(content);
+                  var plainContent = getOrignMarkdownFile(note);
+                  if (!!plainContent && plainContent != null) {
+                    content = plainContent;
+                  } else {
+                    content = html2markdown(content);
+                  }
                 }
 
                 var result = {
@@ -275,6 +397,7 @@ exports.Evernote = (function() {
         title = generateRandomFilename('md')
       }
       var contents = req.body.fileContents || '测试数据';
+      var plainContent = contents;
       var htmlContents = req.body.fileHtmlContents || '<div>测试数据</div>';
       jsdom.env({
         html: '<html><body></body></html>',
@@ -296,11 +419,11 @@ exports.Evernote = (function() {
           }
           var content = formateToEvernoteContent(contents);
           if (!guid) {
-            createNote(evernote_obj, title, content, notebook_guid, function(note){
+            createNote(evernote_obj, title, content, plainContent, notebook_guid, function(note){
               return res.json(note);
             });
           } else {
-            updateNote(evernote_obj, guid, title, content, function(note){
+            updateNote(evernote_obj, guid, title, content, plainContent, function(note){
               return res.json(note);
             });
           }
