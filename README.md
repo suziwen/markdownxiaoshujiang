@@ -1,49 +1,152 @@
-# 小书匠编辑器
 
-[小书匠编辑器][4]（以下简称小书编）是一个在线的markdown编辑器，并提供对evernote的支持。
+### 语法相关
+ &nbsp; | github版| 桌面版| web版
+------------- | -------------| -------------| -------------
+toc目录  | y| y| y
+表格  | y| y| y
+gfw  | y| y| y
+代码高亮  | y| y| y
+脚注  | y| y| y
+mathjax公式  | y| y| y
+流程图  | n| y| y
+序列图  | n| y| y
 
-小书编前身为[小书匠][1]上的一个文章输入模块，后来在[dillinger][2]的基础上，将[小书匠][1]原有的代码进行分离再整合，成为现在单独的一个小书编，并一直做为单独功能进行开发维护。
-
-为什么使用javascript做为后台，而不是使用[小书匠][1]系统原来使用的python开发？主要是感觉拿python当后台仅仅开发个编辑器有点太浪费了，心里也就只想找一个更轻量点的后端进行开发，于是就尝试了下用javascript做后端的nodejs，框架上使用了express。同时看了下许多编辑器的开源代码，包括当时比较出名的[dillinger][2]源代码和[stackedit][3]源代码，都是使用javascript进行开发的，就更加坚定的选择了javascript。
-
-刚发布的小书编是不对任何第三方平台进行支持的，后来有个印象+markdown的开发比赛，于是也就花了点时间学习了下evernote的api,把对evernoter的支持功能给实现了。虽然比赛只拿到一份鼓励奖，不过实现了对evernote支持的功能，自我感觉还是不错的。
-
-由于个人精力，能力及架构等原因，现在的小书编跟[小书匠][1]还是有比较大的区别，有些地方在小书编上得到体现，像对evernote的支持，mathjax,主题切换等，在[小书匠][1]上却没考虑将其实现;有些在[小书匠][1]上有所增强，比如界面，按钮栏，服务器保存文章，版本文件的管理，图片上传等。在将来的新版本开发上，依据的主要原则是：小书编尽量单机化，也就是不保存用户的任何数据到服务器上，并提供开源的代码。而[小书匠][1]系统带的编辑器，是做为整体的一部份，在功能的设计上则需要用户把数据保存到服务器的版本管理系统上。
-
-
-## 主要功能
-
-1. 在线的MARKDOWN编辑器
-2. 提供实时预览的双栏编辑，单栏编辑或查看，全屏写作等模式。当用户第一次使用小书编时，系统将默认采用双栏的编辑模式，用户可通过切换按钮进行调整。
-3. 提供以html,markdown两种格式的导出功能
-4. 多种主题选择
-3. 支持gfw语法
-4. 支持代码高亮功能
-5. 支持toc目录语法
-5. 支持脚注语法
-6. 支持mathjax公式语法
-7. 提供evernote抓取与保存，并支持将evernote上的文件以html转换成markdown的方式进行抓取
-8. 支持evernote与小书匠编辑器的自动关联，关联成功后，用户直接保存（ctrl+s）文件时，小书匠编辑器将自动将文章保存到evernote服务器上
-9. 提供历史版本的功能。用户保存（ctrl+s）文件时，系统将记录历史版本，通过`历史`按钮查看文件的历史版本。系统最多保存5个历史版本。与evernote进行绑定后，历史版本的内容将从evernote服务器上取得，用户需要有提供历史功能的evernote高级帐号
-10. 字符数，字数，段落数统计
+### 功能相关
+ &nbsp; | github版| 桌面版| web版
+------------- | -------------| -------------| -------------
+实时预览  | y| y| y
+历史版本  | y| y| y
+多种主题  | y| y| y
+自定义css样式  | y| y| y
+全屏写作  | y| y| y
+字符数，字数，段落数统计  | y| y| y
+vim快捷键  | y| y| y
+html导出  | y| y| y
+markdown导出  | y| y| y
+图片保存  | n| y| y
+图片复制粘贴  | n| n| y
+图片缓存  | y| y| y
+流程图自动转换成图片  | n| y| y
+序列图自动转换成图片  | n| y| y
+公式自动转换成图片  | n| n| y
+word导出  | n| n| y
 
 
-## 源代码
+###第三方扩展
 
-http://github.com/suziwen/markdownxiaoshujiang
+ &nbsp; | github版| 桌面版| web版
+------------- | -------------| -------------| -------------
+支持evernote  | y| y| y
+支持印象笔记  | y| y| y
+html转换成markdown导出  | y| y| y
+markdown导入  | y| y| y
+markdown转换成html导入  | y| y| y
 
-**qq交流群： 310113380**
 
-## 开源协议
+### 快捷键
+
+`ctrl+s`
+: 快速保存，如果关联了第三方，将自动保存到服务器上
+
+`ctrl + shift + 1`
+: 编辑区与预览区切换
+
+`ctrl + shift + 2`
+: 全屏写作切换
+
+`ctrl + b`
+: 粗体 
+
+`ctrl + i`
+: 斜体 
+
+`ctrl + l`
+: 插入超链接 
+
+`ctrl + q`
+: 插入引用 
+
+`ctrl + k`
+: 插入代码 
+
+`ctrl + g`
+: 插入图片 
+
+
+
+`ctrl + o`
+: 插入有序序列
+
+
+`ctrl + u`
+: 插入无序序列 
+
+
+`ctrl + h`
+: 提升标题 
+
+
+`ctrl + r`
+: 插入分格线 
+
+`ctrl + z`
+: 撤消 
+
+`ctrl + y`
+: 重做 
+
+### 桌面版下载地址：
+
+1. window版：
+  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/window/Story-writer-window.exe),
+  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/window/md5.txt)
+
+2. Linux32位版：
+  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x32/Story-writer-linux-x32.zip),
+  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x32/md5.txt)
+
+3. Linux64位版：
+  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x64/Story-writer-linux-x64.zip),
+  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x64/md5.txt)
+
+4. mac版：
+  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/mac/story-writer-mac.zip),
+  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/mac/md5.txt)
+
+5. package版：
+  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/package/node-webkit.nw),
+  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/package/md5.txt)
+
+
+### WEB版本访问地址
+
+http://markdown.xiaoshujiang.com
+
+### GITHUB版源代码
+
+https://github.com/suziwen/markdownxiaoshujiang
+
+### qq交流群
+
+**310113380**
+
+### bug，功能提交
+
+https://github.com/suziwen/markdownxiaoshujiang/issues
+
+### 开源协议
 
 MIT
 
-## 华丽丽的广告
+### 广告
 
-欢迎大家注册使用 http://www.xiaoshujiang.com 
+欢迎大家注册使用 http://www.xiaoshujiang.com
 
 
-  [1]: http://www.xiaoshujiang.com
-  [2]: http://dillinger.io
-  [3]: https://stackedit.io
-  [4]: http://markdown.xiaoshujiang.com
+----
+
+自动转换成图片
+: 这里指的是当文件导出时，自动转换成图片，比如evernote的保存，word的导出等
+
+
+
