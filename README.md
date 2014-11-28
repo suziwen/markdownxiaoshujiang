@@ -1,4 +1,5 @@
 ### 小书匠离线版v0.2.1
+![pic](https://raw.githubusercontent.com/suziwen/markdownxiaoshujiang/master/snapshot.png)
 [下载地址](http://pan.baidu.com/s/1hqDvFW4)
 MD5校验值：
 
