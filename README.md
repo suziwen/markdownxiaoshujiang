@@ -1,3 +1,12 @@
+### 小书匠离线版v0.2.1
+[下载地址](http://pan.baidu.com/s/1hqDvFW4)
+MD5校验值：
+
+04af50f90b4f7f620b8614382108f94b Story-writer-window.exe 
+6579c354d5b2cd8c8e52bfd4991e49a5 node-webkit.nw 
+fffc4687ad44efac66a7e64911d55a4 Story-writer-Mac.zip 
+7e067755e65675a1ddc6c91a535e6e51 Story-writer-linux-x32.zip 
+bd3ef8f85d2afabb24fac6b95b32901c Story-writer-linux-x64.zip
 
 ### 语法相关
  &nbsp; | github版| 桌面版| web版
@@ -9,7 +18,7 @@ gfw  | y| y| y
 脚注  | y| y| y
 mathjax公式  | y| y| y
 流程图  | n| y| y
-序列图  | n| y| y
+统计图  | n| y| y
 
 ### 功能相关
  &nbsp; | github版| 桌面版| web版
@@ -28,9 +37,12 @@ markdown导出  | y| y| y
 图片缓存  | y| y| y
 流程图自动转换成图片  | n| y| y
 序列图自动转换成图片  | n| y| y
-公式自动转换成图片  | n| n| y
-word导出  | n| n| y
-
+公式自动转换成图片  | n| y| y
+word导出  | n| y| y
+zip导出  | n| y| y
+zip导入  | n| y| y
+md导入  | n| y| y
+自定义字体  | n| y| y
 
 ###第三方扩展
 
@@ -41,6 +53,7 @@ word导出  | n| n| y
 html转换成markdown导出  | y| y| y
 markdown导入  | y| y| y
 markdown转换成html导入  | y| y| y
+同步CSS样式  | n| y| y
 
 
 ### 快捷键
