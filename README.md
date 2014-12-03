@@ -1,13 +1,7 @@
-### 小书匠离线版v0.2.1
+### 小书匠离线版v0.2.2
 ![pic](https://raw.githubusercontent.com/suziwen/markdownxiaoshujiang/master/snapshot.png)
-[下载地址](http://pan.baidu.com/s/1hqDvFW4)
-MD5校验值：
+[下载地址](http://soft.xiaoshujiang.com)
 
-04af50f90b4f7f620b8614382108f94b Story-writer-window.exe 
-6579c354d5b2cd8c8e52bfd4991e49a5 node-webkit.nw 
-fffc4687ad44efac66a7e64911d55a4 Story-writer-Mac.zip 
-7e067755e65675a1ddc6c91a535e6e51 Story-writer-linux-x32.zip 
-bd3ef8f85d2afabb24fac6b95b32901c Story-writer-linux-x64.zip
 
 ### 语法相关
  &nbsp; | github版| 桌面版| web版
