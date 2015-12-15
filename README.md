@@ -103,28 +103,6 @@ markdown转换成html导入  | y| y| y
 `ctrl + y`
 : 重做 
 
-### 桌面版下载地址：
-
-1. window版：
-  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/window/Story-writer-window.exe),
-  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/window/md5.txt)
-
-2. Linux32位版：
-  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x32/Story-writer-linux-x32.zip),
-  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x32/md5.txt)
-
-3. Linux64位版：
-  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x64/Story-writer-linux-x64.zip),
-  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/linux-x64/md5.txt)
-
-4. mac版：
-  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/mac/story-writer-mac.zip),
-  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/mac/md5.txt)
-
-5. package版：
-  [下载地址](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/package/node-webkit.nw),
-  [md5](http://markdown.xiaoshujiang.com/version/story-writer-v0.1.0/package/md5.txt)
-
 
 ### WEB版本访问地址
 
@@ -133,10 +111,6 @@ http://markdown.xiaoshujiang.com
 ### GITHUB版源代码
 
 https://github.com/suziwen/markdownxiaoshujiang
-
-### qq交流群
-
-**310113380**
 
 ### bug，功能提交
 
